@@ -1,0 +1,10 @@
+# only show top level disk usage
+du -h -d1
+
+# show 5 biggest directories
+du -h ./ | sort -n -r | head -n -5
+
+# show file system disk usage, check the mounted folder and clean them up
+df -h
+
+
