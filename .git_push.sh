@@ -1,9 +1,14 @@
-read -p "Style check? (y/n) " rebuild
+read -p "Style check and unit test? (y/n) " rebuild
 if [ "$rebuild" == "y" ]; then
-    ./gradlew build -x test
+    ./gradlew checkstyleMain checkstyleTest spotbugsMain spotbugsTest spotbugsScoverage compileTestJava && ./gradlew unitTest
 fi
+
+# read -p "Unit test? (y/n)" unit
+# if [ "$unit" == "y" ]; then
+#    ./gradlew unitTest
+# fi
 
 read -p "Proceed? (y/n)" go
 if [ "$go" == "y" ]; then
-    git push -f
+    git add -u && git commit --amend && git push -f
 fi
